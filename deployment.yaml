@@ -1,0 +1,20 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javadeployment # deployment name
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java # app label
+  template:
+    metadata:
+      labels:
+        app: java  # app label
+    spec:
+      containers:
+      - name: java-container # Replace with your container name
+        image: aniruddh030502/devopsjavaimg:latest # This will be changed by the Jenkins file.
+        ports:
+        - containerPort: 8080
