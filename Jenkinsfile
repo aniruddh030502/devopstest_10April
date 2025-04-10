@@ -26,7 +26,7 @@ pipeline {
           script {
             sh """
               docker build -t $REGISTRY:$IMAGE_TAG .
-              docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+              echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
               docker push $REGISTRY:$IMAGE_TAG
             """
           }
@@ -39,18 +39,4 @@ pipeline {
         branch 'develop'
       }
       steps {
-        withCredentials([file(credentialsId: 'kubeconfig-credential-id', variable: 'KUBECONFIG')]) {
-          script {
-            sh """
-              sed -i 's|{{IMAGE}}|$REGISTRY:$IMAGE_TAG|' k8s/deployment.yaml
-              kubectl apply -f k8s/deployment.yaml
-              kubectl apply -f k8s/service.yaml
-            """
-          }
-        }
-      }
-    }
-
-  }
-
-}
+        with
