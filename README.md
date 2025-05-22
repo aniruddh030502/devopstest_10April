@@ -48,4 +48,4 @@
 - **To run a particular test class**
   <br/>```mvn -Dtest=HelloWorldControllerTest test```
   <br/>or
-  <br/>```mvn -Dtest=HelloWorldApplicationTests test```
+  <br/>```mvn -Dtest=HelloWorldApplicationTests test```.
