@@ -39,10 +39,10 @@ pipeline {
         branch 'develop'
       }
       steps {
-        withCredentials([file(credentialsId: 'kubeconfig-credential-id', variable: 'KUBECONFIG')]) {
+        // withCredentials([file(credentialsId: 'kubeconfig-credential-id', variable: 'KUBECONFIG')]) {
           script {
             sh """
-              sed -i 's|{{IMAGE}}|$REGISTRY:$IMAGE_TAG|' deployment.yaml
+              // sed -i 's|{{IMAGE}}|$REGISTRY:$IMAGE_TAG|' deployment.yaml
               kubectl apply -f deployment.yaml
               kubectl apply -f service.yaml
             """
